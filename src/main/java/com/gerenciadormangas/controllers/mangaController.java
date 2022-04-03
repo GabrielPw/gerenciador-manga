@@ -1,6 +1,7 @@
 package com.gerenciadormangas.controllers;
 
 import com.gerenciadormangas.model.Manga;
+import com.gerenciadormangas.repository.AutorRepository;
 import com.gerenciadormangas.repository.MangaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
