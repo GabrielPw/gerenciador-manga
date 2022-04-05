@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+import java.util.Optional;
+
 @Controller
 public class AutorController {
 
@@ -17,6 +20,7 @@ public class AutorController {
 
     @Autowired
     public AutorRepository ar;
+
 
     @RequestMapping(value = "/cadastrarAutor", method = RequestMethod.GET)
     public String autor(){
@@ -33,9 +37,19 @@ public class AutorController {
     @RequestMapping(value = "/autor")
     public ModelAndView listaAutores(){
         ModelAndView mv = new ModelAndView("index");
-        Iterable<Autor> autores = ar.findAll();
+        List<Autor> autores = ar.findAll();
 
-        mv.addObject("autor", autores);
+        mv.addObject("autores", autores);
+        return mv;
+    }
+
+    @RequestMapping(value = "/{Id}", method = RequestMethod.GET)
+    public ModelAndView detalhesAutor(@PathVariable("Id") long id){
+
+        ModelAndView mv = new ModelAndView("detalhesAutor");
+        Optional<Autor> autorId = ar.findById(id);
+
+        mv.addObject("autorid", autorId);
         return mv;
     }
 }

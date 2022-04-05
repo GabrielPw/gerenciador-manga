@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
 public class mangaController {
 
     @Autowired
     private MangaRepository mr;
+    private AutorRepository ar;
 
     @RequestMapping(value = "/cadastrarManga", method = RequestMethod.GET)
     public String manga(){
@@ -30,7 +33,7 @@ public class mangaController {
     @RequestMapping(value = "/mangas")
     public ModelAndView listaManga(){
         ModelAndView mv = new ModelAndView("index");
-        Iterable<Manga> mangas = mr.findAll();
+        List<Manga> mangas = mr.findAll();
 
         mv.addObject("mangas", mangas);
         return mv;

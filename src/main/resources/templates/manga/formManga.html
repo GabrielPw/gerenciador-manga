@@ -18,16 +18,13 @@
     <div class="container">
 
         <h1 class="my-3">Cadastrar Mangás</h1>
-        <h2 class="my-3"><a href="/mangas" class="btn btn-success"><i class="bi-list"></i> Lista de Mangás</a></h2>
+        <h2 class="my-3"><a href="/mangas" class="btn btn-warning"><i class="bi-list"></i> Lista de Mangás</a></h2>
 
         <form method="post" >
             Nome: <input type="text" value="" name="nome"/>
             Autor:
-                <select th:each="autores: ${autor}">
+                <select>
                     <option>Volvo</option>
-
-                    <option th:text="${autores.nome}"></option>
-
                 </select>
             Ano de Lançamento: <input type="text" value="" name="anoLanc"/>
 

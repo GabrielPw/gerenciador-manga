@@ -15,30 +15,65 @@
 <body>
 
 
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+            <p class="lead mx-5">Gerenciador de Mangás</p>
+            <div class="navbar-nav ms-auto">
+                <p class="my-1 mx-2"><a href="/cadastrarAutor" class="nav-item nav-link btn btn-success text-white"><i class="bi-plus"></i>Cadastrar Autor</a></p>
+                <p class="my-1 mx-2"><a href="/cadastrarManga" class="nav-item nav-link btn btn-warning text-white"><i class="bi-plus"></i>Cadastrar Mangás</a></p>
+            </div>
+        </nav>
+    </header>
+
 
     <div class="container my-5">
-        <h1>Gerenciador de Mangás! <br>Seja Bem-Vindo(a)</h1>
-        <p class="my-5"><a href="/cadastrarAutor" class="btn btn-success"><i class="bi-plus"></i>Cadastrar Autor</a></p>
-        <p class="my-5"><a href="/cadastrarManga" class="btn btn-warning"><i class="bi-plus"></i>Cadastrar Mangás</a></p>
 
-        <h2>Lista de Mangás</h2>
+        <div th:if="${#httpServletRequest.requestURI == '/'}">
+            <h1 class="my-3">Gerenciador de Mangás! <br>Seja Bem-Vindo(a)</h1>
+            <p class="lead">Este site te possibilita registrar autores e mangás<br> no banco de dados =D</p>
+        </div>
 
-        <table class="table my-3">
-            <thead>
-            <tr>
-                <th scope="col">Nome</th>
-                <th scope="col">Autor</th>
-                <th scope="col">Ano de lançamento</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="manga: ${mangas}">
-                <td><span th:text="${manga.nome}"></span></td>
-                <td><span th:text="${manga.autor}"></span></td>
-                <td><span th:text="${manga.anoLanc}"></span></td>
-            </tr>
-            </tbody>
-        </table>
+        <div th:if="${#httpServletRequest.requestURI == '/autor'}">
+            <h2 class="my-5">Lista de Autores</h2>
+
+            <table class="table my-3">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Data de Nascimento</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr th:each="autor: ${autores}">
+                        <td><a th:href="${(#mvc.url('AC#detalhesAutor').arg(0, autor.Id)).build()}"><b><span th:text="${autor.nome}"></span></b></a></td>
+                        <td><span th:text="${autor.dt_nasc}"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:if="${#httpServletRequest.requestURI == '/mangas'}">
+
+            <h2 class="my-5">Lista de Mangás</h2>
+            <table class="table my-3">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Ano de lançamento</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr th:each="manga: ${mangas}">
+                        <td><b><span th:text="${manga.nome}"></span></b></td>
+                        <td><span th:text="${manga.autor}"></span></td>
+                        <td><span th:text="${manga.anoLanc}"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
     </div>
 
