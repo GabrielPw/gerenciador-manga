@@ -1,5 +1,6 @@
 package com.gerenciadormangas.controllers;
 
+import com.gerenciadormangas.model.Autor;
 import com.gerenciadormangas.model.Manga;
 import com.gerenciadormangas.repository.AutorRepository;
 import com.gerenciadormangas.repository.MangaRepository;
@@ -16,11 +17,22 @@ public class mangaController {
 
     @Autowired
     private MangaRepository mr;
+
+    @Autowired
     private AutorRepository ar;
 
     @RequestMapping(value = "/cadastrarManga", method = RequestMethod.GET)
-    public String manga(){
-        return "manga/formManga";
+    public ModelAndView manga(){
+
+        ModelAndView mv = new ModelAndView("manga/formManga");
+        List<Autor> autores = ar.findAll();
+        List<Manga> mangas = mr.findAll();
+        Manga manga = new Manga();
+
+        mv.addObject("autores", autores);
+        mv.addObject("mangas", mangas);
+
+        return mv;
     }
 
     @RequestMapping(value = "/cadastrarManga", method = RequestMethod.POST)

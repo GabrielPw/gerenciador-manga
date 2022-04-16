@@ -23,8 +23,10 @@
         <form method="post" >
             Nome: <input type="text" value="" name="nome"/>
             Autor:
-                <select>
-                    <option>Volvo</option>
+                <select name="autor">
+                    <option th:each="autor: ${autores}" th:value="${autor.id}">
+                        <span th:text="${autor.nome}"></span>
+                    </option>
                 </select>
             Ano de Lançamento: <input type="text" value="" name="anoLanc"/>
 

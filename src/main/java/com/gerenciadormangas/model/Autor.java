@@ -21,4 +21,7 @@ public class Autor {
     @Column(name = "dt_nasc")
     private String dt_nasc;
 
+    @OneToMany(mappedBy = "autor")
+    private List<Manga> mangas;
+
 }

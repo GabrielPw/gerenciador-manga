@@ -26,4 +26,11 @@ public class Manga {
     @JoinColumn(name = "id_autor")
     Autor autor;
 
+    public Autor getAutor(Autor autor) {
+        return this.autor;
+    }
+
+    public void setCategory (Autor autor ) {
+        this.autor = autor ;
+    }
 }

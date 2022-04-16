@@ -68,7 +68,7 @@
 
                     <tr th:each="manga: ${mangas}">
                         <td><b><span th:text="${manga.nome}"></span></b></td>
-                        <td><span th:text="${manga.autor}"></span></td>
+                        <td><span th:text="${manga.autor}!=null? ${manga.autor.nome}:''"></span></td>
                         <td><span th:text="${manga.anoLanc}"></span></td>
                     </tr>
                 </tbody>
