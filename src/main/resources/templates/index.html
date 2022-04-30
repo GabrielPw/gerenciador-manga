@@ -19,6 +19,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light ">
             <p class="lead mx-5">Gerenciador de Mangás</p>
             <div class="navbar-nav ms-auto">
+
                 <p class="my-1 mx-2"><a href="/cadastrarAutor" class="nav-item nav-link btn btn-success text-white"><i class="bi-plus"></i>Cadastrar Autor</a></p>
                 <p class="my-1 mx-2"><a href="/cadastrarManga" class="nav-item nav-link btn btn-warning text-white"><i class="bi-plus"></i>Cadastrar Mangás</a></p>
             </div>
@@ -31,6 +32,28 @@
         <div th:if="${#httpServletRequest.requestURI == '/'}">
             <h1 class="my-3">Gerenciador de Mangás! <br>Seja Bem-Vindo(a)</h1>
             <p class="lead">Este site te possibilita registrar autores e mangás<br> no banco de dados =D</p>
+            <p class="my-1 mx-2"><a href="/usuarios/new" class="btn btn-success text-white"><i class="bi-plus"></i>Cadastrar-se</a></p>
+        </div>
+
+        <div th:if="${#httpServletRequest.requestURI == '/usuarios'}">
+            <h2 class="my-5">Lista de Usuários</h2>
+
+            <table class="table my-3">
+                <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Data de Nascimento</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="usuario: ${usuarios}">
+                        <td><b><span th:text="${usuario.nome}"></span></b></td>
+                        <td><span th:text="${usuario.email}"></span></td>
+                        <td><span th:text="${usuario.dataNasc}"></span></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <div th:if="${#httpServletRequest.requestURI == '/autor'}">

@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -24,7 +25,10 @@ public class Manga {
 
     @ManyToOne
     @JoinColumn(name = "id_autor")
-    Autor autor;
+     Autor autor;
+
+    @ManyToMany(mappedBy = "mangasFavorito")
+    Set<Usuario> favoritos;
 
     public Autor getAutor(Autor autor) {
         return this.autor;
