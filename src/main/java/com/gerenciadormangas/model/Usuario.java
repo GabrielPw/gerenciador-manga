@@ -21,16 +21,19 @@ public class Usuario {
     @Column(name = "nome_usuario")
     private String nome;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "senha")
     private String senha;
 
+    @Column(name= "descricao")
+    private String desc;
+
     @Column(name = "dataNasc")
     private String dataNasc;
 
-    @ManyToMany
+    @OneToMany
     @JoinTable(
             name = "manga_favorito",
             joinColumns = @JoinColumn(name = "id_usuario"),

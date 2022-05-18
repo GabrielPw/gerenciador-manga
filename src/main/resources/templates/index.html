@@ -15,93 +15,23 @@
 <body>
 
 
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
-            <p class="lead mx-5">Gerenciador de Mangás</p>
-            <div class="navbar-nav ms-auto">
+<div class="container my-5">
 
-                <p class="my-1 mx-2"><a href="/cadastrarAutor" class="nav-item nav-link btn btn-success text-white"><i class="bi-plus"></i>Cadastrar Autor</a></p>
-                <p class="my-1 mx-2"><a href="/cadastrarManga" class="nav-item nav-link btn btn-warning text-white"><i class="bi-plus"></i>Cadastrar Mangás</a></p>
-            </div>
-        </nav>
-    </header>
+    <div>
+        <h1>Login</h1>
 
-
-    <div class="container my-5">
-
-        <div th:if="${#httpServletRequest.requestURI == '/'}">
-            <h1 class="my-3">Gerenciador de Mangás! <br>Seja Bem-Vindo(a)</h1>
-            <p class="lead">Este site te possibilita registrar autores e mangás<br> no banco de dados =D</p>
-            <p class="my-1 mx-2"><a href="/usuarios/new" class="btn btn-success text-white"><i class="bi-plus"></i>Cadastrar-se</a></p>
-        </div>
-
-        <div th:if="${#httpServletRequest.requestURI == '/usuarios'}">
-            <h2 class="my-5">Lista de Usuários</h2>
-
-            <table class="table my-3">
-                <thead>
-                <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Data de Nascimento</th>
-                </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="usuario: ${usuarios}">
-                        <td><b><span th:text="${usuario.nome}"></span></b></td>
-                        <td><span th:text="${usuario.email}"></span></td>
-                        <td><span th:text="${usuario.dataNasc}"></span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div th:if="${#httpServletRequest.requestURI == '/autor'}">
-            <h2 class="my-5">Lista de Autores</h2>
-
-            <table class="table my-3">
-                <thead>
-                    <tr>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Data de Nascimento</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <tr th:each="autor: ${autores}">
-                        <td><a th:href="${(#mvc.url('AC#detalhesAutor').arg(0, autor.Id)).build()}"><b><span th:text="${autor.nome}"></span></b></a></td>
-                        <td><span th:text="${autor.dt_nasc}"></span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div th:if="${#httpServletRequest.requestURI == '/mangas'}">
-
-            <h2 class="my-5">Lista de Mangás</h2>
-            <table class="table my-3">
-                <thead>
-                    <tr>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Autor</th>
-                        <th scope="col">Ano de lançamento</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <tr th:each="manga: ${mangas}">
-                        <td><b><span th:text="${manga.nome}"></span></b></td>
-                        <td><span th:text="${manga.autor}!=null? ${manga.autor.nome}:''"></span></td>
-                        <td><span th:text="${manga.anoLanc}"></span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
+        <form method="post" action="/efetuarLogin">
+            email <input class="form-control" type="text" value="" name="email"/><br>
+            senha <input class="form-control" type="password" value="" name="senha"/><br>
+            <button type="submit" class="btn btn-success">Entrar</button>
+        </form>
     </div>
 
+    <p class="my-2">Não possui um cadastro ainda? Considere <a href="/usuarios/new">cadastrar-se</a></p>
+</div>
 
-    <!-- Bootstrap JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Bootstrap JS Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

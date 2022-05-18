@@ -27,7 +27,7 @@ public class Manga {
     @JoinColumn(name = "id_autor")
      Autor autor;
 
-    @ManyToMany(mappedBy = "mangasFavorito")
+    @OneToMany(mappedBy = "mangasFavorito")
     Set<Usuario> favoritos;
 
     public Autor getAutor(Autor autor) {

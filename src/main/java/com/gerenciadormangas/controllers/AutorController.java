@@ -36,7 +36,7 @@ public class AutorController {
 
     @RequestMapping(value = "/autor")
     public ModelAndView listaAutores(){
-        ModelAndView mv = new ModelAndView("index");
+        ModelAndView mv = new ModelAndView("home");
         List<Autor> autores = ar.findAll();
 
         mv.addObject("autores", autores);
